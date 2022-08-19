@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&display=swap');
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+#display{
+  margin:20px auto;
+  font-family: 'IBM Plex Mono', monospace;
+  width: 465px;
+  height: 60px;
+  font-size: 40px;
+  border-radius: 5px;
+  background-color: rgb(26, 63, 26);
+  color:white;
+  text-align: right;
+  padding:10px;
+}
+
+#calc{
+  margin: 0 auto;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size:30px;
+  width:500px;
+  text-align: center;
+  
+}
+#calc td div{
+  margin:5px;
+  padding:30px 0;
+  color:#eeffee;
+  border-radius: 10px;
+  background-color: black;
+}
+#calc td div:hover{
+  background-color: rgb(46, 46, 46);
+}
+
+#case{
+  padding:10px;
+  border-radius: 20px;
+  background-color: rgb(98, 98, 100);
+} 
