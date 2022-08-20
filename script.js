@@ -5,11 +5,17 @@ var ans = 0.0;
 var clickedSymbol=false;
 
 function keyboard(id) {
-    clickedSymbol=false;
-    if(display.charAt(0)=="0"){
-        display=id;
-    } else{
-        display += id;
+    if(display.length<19){
+        clickedSymbol=false;
+        if(display.charAt(0)=="0"){
+            display=id;
+        } else{
+            if(display.includes(".")&&id=="."){
+                display=display;
+            } else{
+                display += id;
+            }
+        }
     }
 }
 
@@ -71,6 +77,12 @@ function equal() {
   display = String(ans);
   num=[];
   math=[];
+}
+
+function roundAns(){
+    if(display.includes(".")){
+        display=display.slice(0,display.indexOf("."));
+    }
 }
 
 function deleteKey(){
@@ -138,6 +150,9 @@ document.addEventListener("keydown",function(key){
             break;
         case "Enter":
             equal();
+            break;
+        case "KeyR":
+            roundAns();
             break;
         default:
             break;
