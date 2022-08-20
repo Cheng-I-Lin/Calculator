@@ -3,17 +3,24 @@ var num = [];
 var math = [];
 var ans = 0.0;
 var clickedSymbol=false;
+var advance=false;
 
 function keyboard(id) {
     if(display.length<19){
         clickedSymbol=false;
-        if(display.charAt(0)=="0"){
-            display=id;
+        if((display==""||display=="0")&&id=="pi"){
+            display="3.14";
         } else{
-            if(display.includes(".")&&id=="."){
-                display=display;
+            if(display.charAt(0)=="0"){
+                display=id;
             } else{
-                display += id;
+                if(display.includes(".")&&id=="."){
+                    display=display;
+                } else{
+                    if(id!="pi"){
+                        display += id;
+                    }
+                }
             }
         }
     }
@@ -158,6 +165,39 @@ document.addEventListener("keydown",function(key){
             break;
     }
 });
+
+function advanced(){
+    if(advance){
+        document.getElementById("display").style.width="465px";
+        for(var i=0;i<document.getElementsByClassName("advanceCalc").length;i++){
+            document.getElementsByClassName("advanceCalc")[i].style.visibility="collapse";
+        }
+        advance=false;
+    } else{
+        document.getElementById("display").style.width="965px";
+        for(var i=0;i<document.getElementsByClassName("advanceCalc").length;i++){
+            document.getElementsByClassName("advanceCalc")[i].style.visibility="visible";
+        }
+        advance=true;
+    }
+}
+
+function percentage(){
+    display=parseFloat(display)/100;
+    equal();
+}
+
+function square(){
+    display=parseFloat(display)*parseFloat(display);
+    equal();
+}
+
+function squareRoot(){
+    if(!display.includes("-")){
+        display=Math.sqrt(parseFloat(display));
+        equal();
+    }
+}
 
 setInterval(function() {
     if(!clickedSymbol&&(display==""||display=="-")){

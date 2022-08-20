@@ -3,7 +3,6 @@ html, body {
     margin: 0%;
   height: 100%;
   width: 100%;
-  overflow: hidden;
 }
 
 #display{
@@ -23,9 +22,9 @@ html, body {
   margin: 0 auto;
   font-family: 'IBM Plex Mono', monospace;
   font-size:30px;
-  width:500px;
+  width:1000px;
   text-align: center;
-  
+  table-layout: fixed;
 }
 #calc td div{
   margin:5px;
@@ -33,6 +32,7 @@ html, body {
   color:#eeffee;
   border-radius: 10px;
   background-color: black;
+  overflow: hidden;
 }
 #calc td div:hover{
   background-color: rgb(46, 46, 46);
@@ -40,6 +40,13 @@ html, body {
 
 #case{
   padding:10px;
-  border-radius: 20px;
   background-color: rgb(98, 98, 100);
 } 
+
+.advanceCalc{
+    visibility: collapse;
+}
+
+a:hover{
+    color: green;
+}
