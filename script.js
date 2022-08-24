@@ -4,21 +4,37 @@ var math = [];
 var ans = 0.0;
 var clickedSymbol=false;
 var advance=false;
+var darkTheme=true;
+var radian=true;
 
 function keyboard(id) {
+    //see if want to remmove this boundary if advance is turned on
     if(display.length<19){
         clickedSymbol=false;
-        if((display==""||display=="0")&&id=="pi"){
-            display="3.14";
+        if((display==""||display=="0")&&(id=="pi"||id=="e")){
+            if(id=="pi"){
+                display=Math.PI;
+            }
+            if(id=="e"){
+                display=Math.E;
+            }
         } else{
             if(display.charAt(0)=="0"){
-                display=id;
+                if(id=="()"){
+                    display="(";
+                } else{
+                    display=id;
+                }
             } else{
                 if(display.includes(".")&&id=="."){
                     display=display;
                 } else{
-                    if(id!="pi"){
-                        display += id;
+                    if(id!="pi"&&id!="e"){
+                        if(id=="()"&&display.includes("(")){
+                            display+=")";
+                        } else{
+                            display += id;
+                        }
                     }
                 }
             }
@@ -102,6 +118,21 @@ function clearDisplay(){
     math=[];
 }
 
+document.getElementById("advancedButton").addEventListener("mouseover",function(){
+    if(advance){
+        document.getElementById("advancedButton").style.backgroundColor="rgb(2, 104, 2)";
+    } else{
+        document.getElementById("advancedButton").style.backgroundColor="rgb(46, 46, 46)";
+    }
+});
+document.getElementById("advancedButton").addEventListener("mouseleave",function(){
+    if(advance){
+        document.getElementById("advancedButton").style.backgroundColor="rgb(26, 63, 26)";
+    } else{
+        document.getElementById("advancedButton").style.backgroundColor="black";
+    }
+});
+
 document.addEventListener("keydown",function(key){
     switch(key.code){
         case "Digit0":
@@ -161,6 +192,12 @@ document.addEventListener("keydown",function(key){
         case "KeyR":
             roundAns();
             break;
+        case "KeyA":
+            advanced();
+            break;
+        case "KeyP":
+            percentage();
+            break;
         default:
             break;
     }
@@ -168,12 +205,14 @@ document.addEventListener("keydown",function(key){
 
 function advanced(){
     if(advance){
+        document.getElementById("advancedButton").style.backgroundColor="black";
         document.getElementById("display").style.width="465px";
         for(var i=0;i<document.getElementsByClassName("advanceCalc").length;i++){
             document.getElementsByClassName("advanceCalc")[i].style.visibility="collapse";
         }
         advance=false;
     } else{
+        document.getElementById("advancedButton").style.backgroundColor="rgb(26, 63, 26)";
         document.getElementById("display").style.width="965px";
         for(var i=0;i<document.getElementsByClassName("advanceCalc").length;i++){
             document.getElementsByClassName("advanceCalc")[i].style.visibility="visible";
@@ -199,9 +238,141 @@ function squareRoot(){
     }
 }
 
+function factorial(){
+    let factorialAns=1;
+    if(parseFloat(display)>=0&&!display.includes(".")){
+        if(parseFloat(display)==0){
+            display=1;
+        } else{
+            for(let i=1;i<=parseFloat(display);i++){
+                factorialAns*=i;
+            }
+            display=factorialAns;
+        }
+        equal();
+    }
+}
+
+function logFunction(){
+    if(parseFloat(display)>=0){
+        display=Math.log10(parseFloat(display));
+        equal();
+    }
+}
+
+function lnFunction(){
+    if(parseFloat(display)>=0){
+        display=Math.log(parseFloat(display));
+        equal();
+    }
+}
+
+function degree(){
+    radian=false;
+    document.getElementById("degree").style.color="green";
+    document.getElementById("radian").style.color="white";
+}
+
+function rad(){
+    radian=true;
+    document.getElementById("radian").style.color="green";
+    document.getElementById("degree").style.color="white";
+}
+
+function sin(){
+    if(radian){
+        display=Math.sin(parseFloat(display));
+    } else{
+        display=parseFloat(display)*(Math.PI/180);
+        display=Math.sin(parseFloat(display));
+    }
+    equal();
+}
+
+function cos(){
+    if(radian){
+        display=Math.cos(parseFloat(display));
+    } else{
+        display=parseFloat(display)*(Math.PI/180);
+        display=Math.cos(parseFloat(display));
+    }
+    equal();
+}
+
+function tan(){
+    if(radian){
+        display=Math.tan(parseFloat(display));
+    } else{
+        display=parseFloat(display)*(Math.PI/180);
+        display=Math.tan(parseFloat(display));
+    }
+    equal();
+}
+
+function inverseSin(){
+    if(radian){
+        display=Math.asin(parseFloat(display));
+    } else{
+        display=Math.asin(parseFloat(display));
+        display=parseFloat(display)*(180/Math.PI);
+    }
+    equal();
+}
+
+function inverseCos(){
+    if(radian){
+        display=Math.acos(parseFloat(display));
+    } else{
+        display=Math.acos(parseFloat(display));
+        display=parseFloat(display)*(180/Math.PI);
+    }
+    equal();
+}
+
+function inverseTan(){
+    if(radian){
+        display=Math.atan(parseFloat(display));
+    } else{
+        display=Math.atan(parseFloat(display));
+        display=parseFloat(display)*(180/Math.PI);
+    }
+    equal();
+}
+
+function changeTheme(theme){
+    if(theme=="sun"){
+        document.getElementById("sun").style.color="green";
+        document.getElementById("moon").style.color="white";
+    } else{
+        document.getElementById("moon").style.color="green";
+        document.getElementById("sun").style.color="white";
+    }
+}/*
+var squareobj=document.getElementById("square");
+var ySpeed=0;
+var gravity=0.6;
+
+document.addEventListener("keyup",function(key){
+    if(key.code=="Space"){
+        ySpeed=-10;
+    }
+});*/
+
 setInterval(function() {
+    /*
+    ySpeed+=gravity;
+    squareobj.style.top=squareobj.offsetTop+ySpeed+"px";
+    if(squareobj.offsetTop+squareobj.offsetHeight>=window.innerHeight){
+        squareobj.style.top=window.innerHeight-squareobj.offsetHeight+"px";
+        ySpeed=0;
+    }*/
     if(!clickedSymbol&&(display==""||display=="-")){
         display="0";
     }
     document.getElementById("display").innerHTML = display;
-});
+    /*
+    if(document.getElementById("square").offsetLeft>window.innerWidth){
+        document.getElementById("square").style.left="0px";
+    }
+    document.getElementById("square").style.left=document.getElementById("square").offsetLeft+1+"px";*/
+}/*,20*/);

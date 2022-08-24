@@ -4,7 +4,7 @@
   <meta name="viewport" content="width=device-width">
   <title>Calculator</title>
   <link href="style.css" rel="stylesheet" type="text/css" />
-  <script src="script.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -14,10 +14,10 @@
     <table id="calc">
         <tr>
             <td class="advanceCalc">
-                <div onclick="roundAns();"></div>
+                <div  onclick="changeTheme('sun');"><i id="sun" class="fa fa-sun-o"></i></div>
             </td>
             <td class="advanceCalc">
-                <div onclick="degree();">Deg</div>
+                <div onclick="degree();"><span id="degree">Deg</span></div>
             </td>
             <td>
                 <div onclick="deleteKey();">&rarr;</div>
@@ -26,7 +26,7 @@
                 <div onclick="clearDisplay();">AC</div>
             </td>
             <td colspan="2">
-                <div id="advancedButton" onclick="advanced();"><a>Advanced</a></div>
+                <div id="advancedButton" onclick="advanced();">Advanced</div>
             </td>
             <td class="advanceCalc">
                 <div onclick="roundAns();">R</div>
@@ -37,13 +37,13 @@
         </tr>
       <tr>
         <td class="advanceCalc">
-          <div onclick="percentage();">%</div>
-          <div onclick="square();">x²</div>
-          <div onclick="squareRoot();">√</div>
-          <div id="pi" onclick="keyboard(this.id);">π</div>
+          <div onclick="changeTheme('moon');"><i id="moon" class="fa fa-moon-o" style="color: green;"></i></div>
+          <div onclick="inverseSin();">sin-1</div>
+          <div onclick="inverseCos();">cos-1</div>
+          <div onclick="inverseTan();">tan-1</div>
         </td>
         <td class="advanceCalc">
-          <div onclick="rad();">rad</div>
+          <div onclick="rad();"><span id="radian" style="color: green;">rad</span></div>
           <div onclick="sin();">sin</div>
           <div onclick="cos();">cos</div>
           <div onclick="tan();">tan</div>
@@ -87,6 +87,8 @@
       </tr>
     </table>
   </div>
+  <div id="square"></div>
+  <script src="script.js"></script>
 </body>
 
 </html>
