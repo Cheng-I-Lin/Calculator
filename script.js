@@ -120,14 +120,22 @@ function clearDisplay(){
 
 document.getElementById("advancedButton").addEventListener("mouseover",function(){
     if(advance){
-        document.getElementById("advancedButton").style.backgroundColor="rgb(2, 104, 2)";
+        if(darkTheme){
+            document.getElementById("advancedButton").style.backgroundColor="rgb(2, 104, 2)";
+        } else{
+            document.getElementById("advancedButton").style.backgroundColor="skyblue";
+        }
     } else{
         document.getElementById("advancedButton").style.backgroundColor="rgb(46, 46, 46)";
     }
 });
 document.getElementById("advancedButton").addEventListener("mouseleave",function(){
     if(advance){
-        document.getElementById("advancedButton").style.backgroundColor="rgb(26, 63, 26)";
+        if(darkTheme){
+            document.getElementById("advancedButton").style.backgroundColor="rgb(26, 63, 26)";
+        } else{
+            document.getElementById("advancedButton").style.backgroundColor="rgb(57, 101, 188)";
+        }
     } else{
         document.getElementById("advancedButton").style.backgroundColor="black";
     }
@@ -212,7 +220,11 @@ function advanced(){
         }
         advance=false;
     } else{
-        document.getElementById("advancedButton").style.backgroundColor="rgb(26, 63, 26)";
+        if(darkTheme){
+            document.getElementById("advancedButton").style.backgroundColor="rgb(26, 63, 26)";
+        } else{
+            document.getElementById("advancedButton").style.backgroundColor="rgb(57, 101, 188)";
+        }
         document.getElementById("display").style.width="965px";
         for(var i=0;i<document.getElementsByClassName("advanceCalc").length;i++){
             document.getElementsByClassName("advanceCalc")[i].style.visibility="visible";
@@ -269,13 +281,21 @@ function lnFunction(){
 
 function degree(){
     radian=false;
-    document.getElementById("degree").style.color="green";
+    if(darkTheme){
+        document.getElementById("degree").style.color="green";
+    } else{
+        document.getElementById("degree").style.color="skyblue";
+    }
     document.getElementById("radian").style.color="white";
 }
 
 function rad(){
     radian=true;
-    document.getElementById("radian").style.color="green";
+    if(darkTheme){
+        document.getElementById("radian").style.color="green";
+    } else{
+        document.getElementById("radian").style.color="skyblue";
+    }
     document.getElementById("degree").style.color="white";
 }
 
@@ -341,11 +361,45 @@ function inverseTan(){
 
 function changeTheme(theme){
     if(theme=="sun"){
-        document.getElementById("sun").style.color="green";
+        darkTheme=false;
+        document.getElementById("sun").style.color="skyblue";
         document.getElementById("moon").style.color="white";
+        document.getElementById("case").style.backgroundColor="rgb(199, 216, 250)";
+        document.getElementById("display").style.backgroundColor="rgb(57, 101, 188)";
+        document.getElementById("advancedButton").style.backgroundColor="rgb(57, 101, 188)";
+        if(radian){
+            if(darkTheme){
+                document.getElementById("radian").style.color="green";
+            } else{
+                document.getElementById("radian").style.color="skyblue";
+            }
+        } else{
+            if(darkTheme){
+                document.getElementById("degree").style.color="green";
+            } else{
+                document.getElementById("degree").style.color="skyblue";
+            }
+        }
     } else{
+        darkTheme=true;
         document.getElementById("moon").style.color="green";
         document.getElementById("sun").style.color="white";
+        document.getElementById("case").style.backgroundColor="rgb(98, 98, 100)";
+        document.getElementById("display").style.backgroundColor="rgb(26, 63, 26)";
+        document.getElementById("advancedButton").style.backgroundColor="rgb(26, 63, 26)";
+        if(radian){
+            if(darkTheme){
+                document.getElementById("radian").style.color="green";
+            } else{
+                document.getElementById("radian").style.color="skyblue";
+            }
+        } else{
+            if(darkTheme){
+                document.getElementById("degree").style.color="green";
+            } else{
+                document.getElementById("degree").style.color="skyblue";
+            }
+        }
     }
 }/*
 var squareobj=document.getElementById("square");
