@@ -49,11 +49,4 @@ html, body {
 
 a:hover{
     color: rgb(57, 101, 188);
-}/*
-#square{
-    background-color: aqua;
-    left: 50px;
-    width: 100px;
-    height: 100px;
-    position: absolute;
-}*/
+}

@@ -401,32 +401,11 @@ function changeTheme(theme){
             }
         }
     }
-}/*
-var squareobj=document.getElementById("square");
-var ySpeed=0;
-var gravity=0.6;
-
-document.addEventListener("keyup",function(key){
-    if(key.code=="Space"){
-        ySpeed=-10;
-    }
-});*/
+}
 
 setInterval(function() {
-    /*
-    ySpeed+=gravity;
-    squareobj.style.top=squareobj.offsetTop+ySpeed+"px";
-    if(squareobj.offsetTop+squareobj.offsetHeight>=window.innerHeight){
-        squareobj.style.top=window.innerHeight-squareobj.offsetHeight+"px";
-        ySpeed=0;
-    }*/
     if(!clickedSymbol&&(display==""||display=="-")){
         display="0";
     }
     document.getElementById("display").innerHTML = display;
-    /*
-    if(document.getElementById("square").offsetLeft>window.innerWidth){
-        document.getElementById("square").style.left="0px";
-    }
-    document.getElementById("square").style.left=document.getElementById("square").offsetLeft+1+"px";*/
-}/*,20*/);
+});
